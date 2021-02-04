@@ -6,6 +6,7 @@ class CalculateTipScreen extends StatefulWidget {
 }
 
 class _CalculateTipScreenState extends State<CalculateTipScreen> {
+  //default amount
   static const _billAmount = 0.0;
   static const _tipPercentage = 15;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -14,13 +15,13 @@ class _CalculateTipScreenState extends State<CalculateTipScreen> {
       new TextEditingController(text: _billAmount.toString());
   TextEditingController _tipPercentageController =
       new TextEditingController(text: _tipPercentage.toString());
-
+//stores latest value of amount
   double billAmount = _billAmount;
   int tipPercentage = _tipPercentage;
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     _billController.addListener(onBillAmountChange);
     _tipPercentageController.addListener(onTipPercentChange);
@@ -37,9 +38,10 @@ class _CalculateTipScreenState extends State<CalculateTipScreen> {
       tipPercentage = int.tryParse(_tipPercentageController.text) ?? 0;
     });
   }
-
+//return a tip amount
   _getTipAmount() => billAmount * tipPercentage / 100;
 
+//return total amount to be paid
   _getTotalAmount() => billAmount + _getTipAmount();
 
   @override
@@ -111,8 +113,7 @@ class _CalculateTipScreenState extends State<CalculateTipScreen> {
                               style: TextStyle(
                                   color: Colors.blueGrey.shade800,
                                   fontSize: 22),
-                            ),
-                          ),
+                            ),),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
@@ -120,10 +121,7 @@ class _CalculateTipScreenState extends State<CalculateTipScreen> {
                               style: TextStyle(
                                   color: Colors.blueGrey.shade800,
                                   fontSize: 22),
-                            ),
-                          )
-                        ],
-                      ))
+                            ),)],))
                 ],
               ),
             ),
